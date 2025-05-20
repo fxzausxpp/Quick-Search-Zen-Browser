@@ -26,8 +26,8 @@ Enjoy ^^
 Additional search engines present:
 
 - DuckDuckGo: `d:`
-- Bing: 'b:`
-- Ecosia: 'e:`
+- Bing: `b:`
+- Ecosia: `e:`
 - Stackoverflow: `so:`
 - Github: `gh:`
 - Wikipedia: `wiki:`
