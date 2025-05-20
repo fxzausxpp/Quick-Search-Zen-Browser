@@ -1,12 +1,3 @@
-// ==UserScript==
-// @name           Quick Search (Normal)
-// @version        1.1.0
-// @author         GitHub Copilot
-// @description    Opens an in-browser container for quick web searches when typing in URL bar and pressing CTRL+ENTER
-// @compatibility  Firefox 91+
-// @namespace      quickSearch_normal@github.copilot
-// ==/UserScript==
-
 (function() {
     'use strict';
     
@@ -281,30 +272,51 @@
         // Add keydown event listener for Ctrl+Enter
         urlbar.addEventListener("keydown", function(event) {
             if (event.ctrlKey && event.key === "Enter") {
-                event.preventDefault();
-                event.stopPropagation();
-                
-                let query = '';
-                
-                try {
-                    // First check if we have captured the query through the input event
-                    if (typeof currentQuery === 'string' && currentQuery.length > 0) {
-                        query = currentQuery.trim();
+                // Check if Shift is also pressed for Glance mode
+                if (event.shiftKey) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    
+                    let query = '';
+                    try {
+                        if (typeof currentQuery === 'string' && currentQuery.length > 0) {
+                            query = currentQuery.trim();
+                        }
+                    } catch (error) {
+                        return;
                     }
-                } catch (error) {
-                    return;
+                    
+                    if (query) {
+                        openInGlanceMode(query);
+                    }
+                    
+                    return false;
+                } else {
+                    // Original Ctrl+Enter behavior
+                    event.preventDefault();
+                    event.stopPropagation();
+                    
+                    let query = '';
+                    try {
+                        if (typeof currentQuery === 'string' && currentQuery.length > 0) {
+                            query = currentQuery.trim();
+                        }
+                    } catch (error) {
+                        return;
+                    }
+                    
+                    if (query) {
+                        handleQuickSearch(query, urlbar);
+                    }
+                    
+                    return false;
                 }
-                
-                if (query) {
-                    handleQuickSearch(query, urlbar);
-                }
-                
-                return false;
             }
         }, true);
         
-        // Add a tooltip to URL bar
+        // Update the tooltip to include Glance mode information
         const urlbarTooltip = "Quick Search Normal: Type a query and press Ctrl+Enter\n" +
+                            "Quick Search Glance: Type a query and press Ctrl+Shift+Enter\n" +
                             "Prefixes: g: (Google), b: (Bing), d: (DuckDuckGo), e: (Ecosia), " + 
                             "so: (Stack Overflow), gh: (GitHub), wiki: (Wikipedia)";
         try {
@@ -312,6 +324,60 @@
             urlbar.setAttribute("title", urlbarTooltip);
         } catch (error) {
             // Non-critical if tooltip fails
+        }
+    }
+
+    // Function to open a URL in Zen Browser's Glance mode
+    function openInGlanceMode(query) {
+        let searchEngine = config.defaultEngine;
+        let searchQuery = query;
+        
+        for (const [engine, engineData] of Object.entries(config.searchEngines)) {
+            if (query.startsWith(engineData.prefix)) {
+                searchEngine = engine;
+                searchQuery = query.substring(engineData.prefix.length).trim();
+                break;
+            }
+        }
+        
+        const baseUrl = config.searchEngines[searchEngine].url;
+        let searchUrl;
+        
+        if (searchEngine === 'google') {
+            searchUrl = baseUrl + encodeURIComponent(searchQuery);
+        } else if (searchEngine === 'stackoverflow') {
+            searchUrl = baseUrl + encodeURIComponent(searchQuery) + '&s=relevance';
+        } else if (searchEngine === 'github') {
+            searchUrl = baseUrl + encodeURIComponent(searchQuery) + '&type=repositories';
+        } else {
+            searchUrl = baseUrl + encodeURIComponent(searchQuery);
+        }
+        
+        try {
+            if (window.gZenGlanceManager) {
+                const browserRect = document.documentElement.getBoundingClientRect();
+                const centerX = browserRect.width / 2;
+                const centerY = browserRect.height / 2;
+                
+                const data = {
+                    url: searchUrl,
+                    x: centerX,
+                    y: centerY,
+                    width: 10,
+                    height: 10
+                };
+                
+                window.gZenGlanceManager.openGlance(data);
+            } else {
+                gBrowser.addTab(searchUrl, {
+                    triggeringPrincipal: Services.scriptSecurityManager.getSystemPrincipal()
+                });
+            }
+        } catch (error) {
+            console.error("Error opening glance mode:", error);
+            gBrowser.addTab(searchUrl, {
+                triggeringPrincipal: Services.scriptSecurityManager.getSystemPrincipal()
+            });
         }
     }
 
