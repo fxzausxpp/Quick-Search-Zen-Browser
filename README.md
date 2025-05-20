@@ -21,7 +21,7 @@ https://github.com/user-attachments/assets/827215fc-e985-4f71-8646-6e3a6b7e624b
 
 2. Install and Setup the userChrome.js Loader from [Autoconfig](https://github.com/MrOtherGuy/fx-autoconfig/tree/master)
 
-### 3. The `zen.urlbar.replace-newtab` in `about:config` case:
+3. ***The `zen.urlbar.replace-newtab` in `about:config` case:***
 - If set to `false`:
   - The `quickSearch.uc.js` will not work as intended as Ctrl+T will open a new tab instead of the url bar.
   - Thus please use `quickSearch_NoBar.uc.js` instead. This adds a Search Box inside the pop up thus not needing to open the url bar.
