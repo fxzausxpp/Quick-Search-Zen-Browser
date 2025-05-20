@@ -1,6 +1,12 @@
 # ⭐ Quick Search - Zen Browser ⭐
 Script to quickly search for a word or phrase in the Zen Browser through a pop up thus removing the need to create and swtich to a new tab.
 
+
+
+https://github.com/user-attachments/assets/95702ac2-96bf-478e-8e47-0afa4916c1c2
+
+
+
 ## 🔧 Installation
 1. Enable userChrome Customizations: In about:config go to toolkit.legacyUserProfileCustomizations.stylesheets and set it to true.
 
