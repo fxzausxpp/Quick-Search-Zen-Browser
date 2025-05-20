@@ -1,11 +1,4 @@
-// ==UserScript==
-// @name           Quick Search (Normal)
-// @version        1.1.0
-// @author         GitHub Copilot
-// @description    Opens an in-browser container for quick web searches when typing in URL bar and pressing CTRL+ENTER
-// @compatibility  Firefox 91+
-// @namespace      quickSearch_normal@github.copilot
-// ==/UserScript==
+
 
 (function() {
     'use strict';
