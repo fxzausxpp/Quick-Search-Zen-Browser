@@ -11,6 +11,10 @@ https://github.com/user-attachments/assets/95702ac2-96bf-478e-8e47-0afa4916c1c2
 
 
 
+https://github.com/user-attachments/assets/827215fc-e985-4f71-8646-6e3a6b7e624b
+
+
+
 
 ## 🔧 Installation
 1. Enable userChrome Customizations: In about:config go to toolkit.legacyUserProfileCustomizations.stylesheets and set it to true.
