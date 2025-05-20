@@ -1,5 +1,3 @@
-
-
 (function() {
     'use strict';
     
@@ -383,88 +381,6 @@
         }
     }
 
-    // Create and initialize the search container
-    function createSearchContainer() {
-        if (document.getElementById('quicksearch-container')) {
-            return document.getElementById('quicksearch-container');
-        }
-        
-        // Create the container elements
-        const container = document.createElement('div');
-        container.id = 'quicksearch-container';
-        
-        // Container for the browser element
-        const browserContainer = document.createElement('div');
-        browserContainer.id = 'quicksearch-browser-container';
-        browserContainer.style.flex = '1';
-        browserContainer.style.width = '100%';
-        browserContainer.style.position = 'relative';
-        browserContainer.style.overflow = 'hidden';
-        
-        // Create floating close button
-        const closeButton = document.createElement('button');
-        closeButton.className = 'quicksearch-close-button';
-        closeButton.innerHTML = '&#10005;'; // X symbol
-        closeButton.title = 'Close';
-        closeButton.onclick = (e) => {
-            e.stopPropagation();
-            
-            // Add the closing animation class
-            container.classList.add('closing');
-            
-            // Wait for animation to complete before hiding
-            setTimeout(() => {
-                container.classList.remove('visible');
-                container.classList.remove('closing');
-                
-                // Clear iframe source when closing
-                const iframe = document.getElementById('quicksearch-content-frame');
-                if (iframe) {
-                    try {
-                        iframe.src = 'about:blank';
-                    } catch (err) {
-                        // Non-critical if clearing fails
-                    }
-                }
-            }, 300);
-        };
-        
-        // Assemble the elements
-        container.appendChild(browserContainer);
-        container.appendChild(closeButton);
-        
-        document.body.appendChild(container);
-        
-        return container;
-    }
-
-    // Helper function to create a browser element
-    function createBrowserElement() {
-        try {
-            const browser = document.createXULElement("browser");
-            
-            browser.setAttribute("type", "content");
-            browser.setAttribute("remote", "true");
-            browser.setAttribute("maychangeremoteness", "true");
-            browser.setAttribute("disablehistory", "true");
-            browser.setAttribute("flex", "1");
-            browser.setAttribute("noautohide", "true");
-            
-            return browser;
-        } catch (e) {
-            try {
-                const browser = document.createElementNS("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul", "browser");
-                
-                browser.setAttribute("type", "content");
-                browser.setAttribute("remote", "true");
-                
-                return browser;
-            } catch (e) {
-                return null;
-            }
-        }
-    }
-
     // Process the search query and show in in-browser container
     function handleQuickSearch(query, urlbar) {
         let searchEngine = config.defaultEngine;
@@ -508,6 +424,12 @@
             
             // Make the container visible immediately 
             container.classList.add('visible');
+            
+            // Close the URL bar using Zen Browser's approach
+            closeUrlBar(urlbar);
+            
+            // Add ESC key listener for this container
+            addEscKeyListener(container);
             
             // Try browser element first
             const browserElement = createBrowserElement();
@@ -557,7 +479,7 @@
                     iframe.style.height = `${Math.floor(containerHeight / scaleFactor)}px`;
                 }, 500);
             });
-              // First append to container, then set source
+            // First append to container, then set source
             browserContainer.appendChild(iframe);
             
             // Small delay before setting source
@@ -567,7 +489,6 @@
 
             // Apply content scaling
             adjustContentScaling(iframe);
-
             
         } catch (error) {
             // Last resort: open in a new tab/window
@@ -577,6 +498,129 @@
                 });
             } catch (e) {
                 window.open(searchUrl, '_blank');
+            }
+        }
+    }
+
+    function closeUrlBar(urlbar) {
+        if (!urlbar) return;
+        
+        try {
+            if (window.gZenUIManager && typeof window.gZenUIManager.handleUrlbarClose === 'function') {
+                window.gZenUIManager.handleUrlbarClose(false, false);
+                return;
+            }
+            
+            // Reset selection
+            urlbar.selectionStart = urlbar.selectionEnd = 0;
+        } catch (e) {
+        }
+    }
+
+    function addEscKeyListener(container) {
+        if (container._escKeyListener) {
+            document.removeEventListener('keydown', container._escKeyListener);
+        }
+        
+        container._escKeyListener = function(event) {
+            if (event.key === 'Escape') {
+                event.preventDefault();
+                event.stopPropagation();
+                closeQuickSearch(container);
+                document.removeEventListener('keydown', container._escKeyListener);
+            }
+        };
+        
+        document.addEventListener('keydown', container._escKeyListener);
+    }
+
+    // Function to close the quick search container
+    function closeQuickSearch(container) {
+        if (!container) container = document.getElementById('quicksearch-container');
+        if (!container) return;
+        
+        container.classList.add('closing');
+        
+        setTimeout(() => {
+            container.classList.remove('visible');
+            container.classList.remove('closing');
+            
+            // Clear iframe source when closing
+            const iframe = document.getElementById('quicksearch-content-frame');
+            if (iframe) {
+                try {
+                    iframe.src = 'about:blank';
+                } catch (err) {
+                }
+            }
+            
+            // Remove the ESC key listener
+            if (container._escKeyListener) {
+                document.removeEventListener('keydown', container._escKeyListener);
+                container._escKeyListener = null;
+            }
+        }, 300);
+    }
+
+    // Create and initialize the search container
+    function createSearchContainer() {
+        if (document.getElementById('quicksearch-container')) {
+            return document.getElementById('quicksearch-container');
+        }
+        
+        // Create the container elements
+        const container = document.createElement('div');
+        container.id = 'quicksearch-container';
+        
+        // Container for the browser element
+        const browserContainer = document.createElement('div');
+        browserContainer.id = 'quicksearch-browser-container';
+        browserContainer.style.flex = '1';
+        browserContainer.style.width = '100%';
+        browserContainer.style.position = 'relative';
+        browserContainer.style.overflow = 'hidden';
+        
+        // Create floating close button
+        const closeButton = document.createElement('button');
+        closeButton.className = 'quicksearch-close-button';
+        closeButton.innerHTML = '&#10005;'; // X symbol
+        closeButton.title = 'Close';
+        closeButton.onclick = (e) => {
+            e.stopPropagation();
+            closeQuickSearch(container);
+        };
+        
+        // Assemble the elements
+        container.appendChild(browserContainer);
+        container.appendChild(closeButton);
+        
+        document.body.appendChild(container);
+        
+        return container;
+    }
+
+    function createBrowserElement() {
+        try {
+            const browser = document.createXULElement("browser");
+            
+            browser.setAttribute("type", "content");
+            browser.setAttribute("remote", "true");
+            browser.setAttribute("maychangeremoteness", "true");
+            browser.setAttribute("disablehistory", "true");
+            browser.setAttribute("flex", "1");
+            browser.setAttribute("noautohide", "true");
+            
+            return browser;
+        } catch (e) {
+            try {
+                const browser = document.createElementNS("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul", "browser");
+                
+                browser.setAttribute("type", "content");
+                browser.setAttribute("remote", "true");
+                
+                return browser;
+            } catch (e) {
+                return null;
             }
         }
     }
