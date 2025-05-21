@@ -17,23 +17,64 @@ https://github.com/user-attachments/assets/827215fc-e985-4f71-8646-6e3a6b7e624b
 
 
 ## 🔧 Installation
-1. Enable userChrome Customizations: In about:config go to toolkit.legacyUserProfileCustomizations.stylesheets and set it to true.
+## Part 1: Install fx-autoconfig
 
-2. Install and Setup the userChrome.js Loader from [Autoconfig](https://github.com/MrOtherGuy/fx-autoconfig/tree/master)
+1. **Download the Files**
+   - Go to the [fx-autoconfig GitHub page](https://github.com/MrOtherGuy/fx-autoconfig/tree/master).
+   - Click the green `< > Code` button and download the ZIP file.
 
-3. ***The `zen.urlbar.replace-newtab` in `about:config` case:***
-- If set to `false`:
-  - The `quickSearch.uc.js` will not work as intended as Ctrl+T will open a new tab instead of the url bar.
-  - Thus please use `quickSearch_NoBar.uc.js` instead. This adds a Search Box inside the pop up thus not needing to open the url bar.
-  - Copy and paste the `quickSearch_NoBar.uc.js` file to your `chrome/JS` folder.
-  - Thanks to @Logic for the idea <3
-  
-- If set to `true`:
-    - Copy and paste the `quickSearch.uc.js` file to your `chrome/JS` folder.
+2. **Navigate to Your Zen Browser Installation Folder**
+   - Locate your Zen Browser installation folder:
+     - Default location on Windows: `C:\Program Files\Zen Browser`.
+     - If unsure, open `about:support` in Zen Browser, and look for the "Application Binary" field.
 
-4. Open Zen browser, go to `about:support` and clear the startup cache.
+3. **Extract fx-autoconfig ZIP File**
+   - Open the extracted folder and locate the `program` folder. Inside, you’ll find:
+     - A `defaults` folder.
+     - A `config.js` file.
 
-Enjoy ^^
+4. **Move Files to the Installation Folder**
+   - You can **merge** or **replace** the files depending on your preferred method:
+     - **Merge**:
+       - **config.js**: Open the `config.js` file from the ZIP. 
+         - If a `config.js` file exists in your Zen Browser folder, copy its content from the ZIP version and paste it into your existing file, then save.
+         - If no `config.js` file exists, copy the one from the ZIP directly to your Zen Browser folder.
+       - **defaults folder**: Navigate to `defaults > pref > config-prefs.js` both in the ZIP and Zen Browser folder. Open both files, copy the content from the ZIP version, and paste it into the existing file in Zen Browser. If the folder or file doesn’t exist, simply copy the entire `defaults` folder into your Zen Browser folder.
+     - **Replace**:
+       - Drag and drop the entire `defaults` folder and `config.js` from the ZIP file into the Zen Browser installation folder. Replace any existing files when prompted.
+
+5. **Navigate to Your Zen Profile Folder**
+   - Open Zen Browser and go to `about:profiles`.
+   - Locate the desired profile, find the "Root Directory," and click "Open Folder."
+
+6. **Copy the Profile Files**
+   - Go back to the `profile` folder in the fx-autoconfig ZIP.
+   - Copy the `chrome` folder into the profile's root directory.
+
+
+## Part 2: Install Quick Search
+
+1. **Open the Required Folder**
+   - From your profile root folder, navigate to `chrome > JS`.
+
+2. **Download the Quick Search Plugin**
+   - Go to the [Quick Search GitHub page](https://github.com/Darsh-A/Quick-Search-Zen-Browser/tree/main).
+   - Click the green `< > Code` button and download the ZIP file.
+
+3. **Check Configuration in Zen Browser**
+   - Open a new tab, type `about:config`, and press Enter.
+   - Look up `zen.urlbar.replace-newtab`. Note whether it is set to `true` or `false`.
+
+4. **Install the Plugin**
+   - Extract the Quick Search ZIP file.
+   - Depending on the `zen.urlbar.replace-newtab` value:
+     - If `false`: Copy `quickSearch_NoBar.uc.js` from the extracted ZIP to the `JS` folder.
+     - If `true`: Copy `quickSearch.uc.js` from the extracted ZIP to the `JS` folder.
+
+5. **Clear Startup Cache**
+   - Open `about:support` in Zen Browser.
+   - Click "Clear startup cache..." in the top-right corner. When prompted, restart the browser.
+
 
 
 ## ⚙️ Configuration
